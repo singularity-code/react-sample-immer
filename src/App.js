@@ -1,4 +1,4 @@
-import Immer from "immer";
+import produce from "immer";
 import React, { useRef, useCallback, useState } from "react";
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
       //   [name]: [value],
       // });
       setForm(
-        Immer(form, (draft) => {
+        produce(form, (draft) => {
           draft[name] = value;
         })
       );
@@ -39,7 +39,7 @@ const App = () => {
       //   array: data.array.concat(info),
       // });
       setData(
-        Immer(data, (draft) => {
+        produce(data, (draft) => {
           draft.array.push(info);
         })
       );
@@ -60,7 +60,7 @@ const App = () => {
       //   array: data.array.filter((info) => info.id !== id),
       // });
       setData(
-        Immer(data, (draft) => {
+        produce(data, (draft) => {
           draft.array.splice(
             draft.array.findIndex((info) => info.id === id),
             1
