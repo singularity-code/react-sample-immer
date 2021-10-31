@@ -1,7 +1,7 @@
-import Immer from "immer";
+import { Immer } from "immer";
 import React, { useRef, useCallback, useState } from "react";
 
-const App = () => {
+const AppImmer = () => {
   const nextId = useRef(1);
   const [form, setForm] = useState({ name: "", username: "" });
   const [data, setData] = useState({
@@ -11,11 +11,6 @@ const App = () => {
   const onChange = useCallback(
     (e) => {
       const { name, value } = e.target;
-      // Without Immer
-      // setForm({
-      //   ...form,
-      //   [name]: [value],
-      // });
       setForm(
         Immer(form, (draft) => {
           draft[name] = value;
@@ -33,11 +28,6 @@ const App = () => {
         name: form.name,
         username: form.username,
       };
-      // Without Immer
-      // setData({
-      //   ...data,
-      //   array: data.array.concat(info),
-      // });
       setData(
         Immer(data, (draft) => {
           draft.array.push(info);
@@ -54,11 +44,6 @@ const App = () => {
 
   const onRemove = useCallback(
     (id) => {
-      // Without Immer
-      // setData({
-      //   ...data,
-      //   array: data.array.filter((info) => info.id !== id),
-      // });
       setData(
         Immer(data, (draft) => {
           draft.array.splice(
@@ -100,4 +85,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AppImmer;
